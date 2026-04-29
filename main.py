@@ -1,8 +1,17 @@
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 import joblib
 import numpy as np
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # allow all (for now)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load models
 model1 = joblib.load("model1_adherence_prediction_pipeline.pkl")
